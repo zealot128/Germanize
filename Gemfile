@@ -38,3 +38,7 @@ gem "haml-rails", ">= 0.3.4"
 gem "launchy", ">= 0.3.7", :group => [:cucumber, :test]
 gem "rspec-rails", ">= 2.2.1", :group => [:cucumber, :development, :test]
 gem "spork", ">= 0.8.4", :group => [:cucumber, :test]
+gem "nifty-generators", :group => :development
+gem "bcrypt-ruby", :require => "bcrypt"
+gem "mocha", :group => :test
+gem "i18n_generators", :group => :development

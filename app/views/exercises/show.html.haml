@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @exercise.name
+%p
+  %b Options:
+  = @exercise.options
+%p
+  %b User:
+  = @exercise.user_id
+
+= link_to 'Edit', edit_exercise_path(@exercise)
+\|
+= link_to 'Back', exercises_path
