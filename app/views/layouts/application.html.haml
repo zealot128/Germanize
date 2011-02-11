@@ -7,12 +7,41 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
     = yield(:head)
-  %body
-    - flash.each do |bla,blubb|
-      %div.message{ :class => bla }
-        = blubb
-    = yield(:title)
+  %body#home
+    .wrap
+      #logo
+        %h1
+          %a{:href => "/", :title => "Home"} 
+            =yield(:title)
+            Germanize
+        %p Making learning German much easier!
+      %ul#nav
+        %li=link_to_with_highlight t("Home"), root_path
+        %li=link_to_with_highlight t("activerecord.models.exercise"), exercises_path
+        %li
+        %li
+        %li
+        %li
+        
 
-    = yield
+    .clear
+    .wrap
+      #left
+        %h2=yield(:title)
+        - flash.each do |bla,blubb|
+          %div.message{ :class => bla }
+            = blubb
+        = yield
+      #right
+        .box
+          Sidebar
+        =yield(:sidebar)
+      #footer
+        %p
+          %strong=t('Author')
+          %a{:href => "http://www.stefanwienert.net/"} Stefan Wienert
+        %p
+          =t("Design") 
+          %a{:href => "http://www.solucija.com/", :title => "Awsome Web Templates"} Solucija
 
-    = yield(:footer)
+        = yield(:footer)

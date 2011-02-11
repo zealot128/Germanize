@@ -8,6 +8,10 @@ de:
   no_account: "Falls Sie noch keinen Account haben, dann können Sie sich "
   Sign up: Registrieren
   Update: Aktualisieren
+  Home: Home
+  Author: "Autor:"
+  Design: "Design:"
+  
   login:
     username: Username
     password: Passwort

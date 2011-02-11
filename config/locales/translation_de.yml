@@ -1,0 +1,19 @@
+de:
+  
+  activerecord:
+    models:
+      user: Nutzer
+      exercise: "Übung"  #g
+
+    attributes:
+      user:
+        username: Benutzername  #g
+        email: E-Mail  #g
+        password_hash: Passwort-Hash  #g
+        password_salt: Passwort Salz  #g
+        password_confirmation: Passwort-Bestätigung
+        password: Passwort
+
+      exercise:
+        name: Name  #g
+        options: Optionen  #g
