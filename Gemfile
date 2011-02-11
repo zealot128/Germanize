@@ -42,3 +42,8 @@ gem "nifty-generators", :group => :development
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "mocha", :group => :test
 gem "i18n_generators", :group => :development
+group :development, :test do
+  gem "redgreen"
+  gem "autotest-rails"
+  gem "autotest"
+end

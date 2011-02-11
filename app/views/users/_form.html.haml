@@ -1,5 +1,5 @@
 = form_for @user do |f|
-  = f.error_messages
+  = @user.errors.full_messages
   %p
     = f.label :username
     %br
