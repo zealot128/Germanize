@@ -4,6 +4,16 @@
 #  - Alexander Dreher - http://github.com/alexdreher - Rails 3 update
 
 de:
+  Log in: Einloggen
+  no_account: "Falls Sie noch keinen Account haben, dann können Sie sich "
+  Sign up: Registrieren
+  Update: Aktualisieren
+  login:
+    username: Username
+    password: Passwort
+    
+    
+
   date:
     formats:
       default: "%d.%m.%Y"

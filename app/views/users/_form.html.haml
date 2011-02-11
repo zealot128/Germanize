@@ -5,7 +5,7 @@
     %br
     = f.text_field :username
   %p
-    = f.label :email, "Email Address"
+    = f.label :email
     %br
     = f.text_field :email
   %p
@@ -13,8 +13,8 @@
     %br
     = f.password_field :password
   %p
-    = f.label :password_confirmation, "Confirm Password"
+    = f.label :password_confirmation
     %br
     = f.password_field :password_confirmation
   %p
-    = f.submit (@user.new_record? ? "Sign up" : "Update")
+    = f.submit (@user.new_record? ? t("Sign up") : t("Update"))
