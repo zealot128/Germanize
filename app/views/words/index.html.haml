@@ -15,5 +15,4 @@
     %ul.sidebar
       %li= link_to I18n.t('new_word'), new_exercise_word_path, :rel => :facebox, :class => :button
       %li
-        %a.button{:href => exercise_word_path(@exercise,@exercise.find_next_word)}
-          =t('start_training')
+        = link_to t('start_training'), exercise_word_path(@exercise,@exercise.find_next_word) rescue t('start_training')
