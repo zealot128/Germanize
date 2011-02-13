@@ -11,10 +11,43 @@ de:
   Home: Home
   Author: "Autor:"
   Design: "Design:"
-  
+  exercise: "Übung"
+  edit: "Bearbeiten"
+  new_exercise: "Neue Übung anlegen"
+  listing_exercises: "Alle meine Übungen"
+  destroy: "Löschen"
+  are_you_sure: "Bist du sicher?"
+  editing_word: "Wort bearbeiten"
+  item_created: "%{item} erstellt"
+  item_updated: "%{item} aktualisiert"
+  listing_words: "Alle meine Worte"
+  new_word: "Neues Wort"
+  save: "Speichern"
+  word: "Wort"
+  retrieve_data: "Details besorgen"
+  examples: Beispiele
+  solve: "Lösen"
+  correct: "Richtig"
+  wrong: "Falsch"
+  examples: Beispiele
+  translations: "Übersetzung"
+  synonyms: "Synonyme"
+  grammar: "Grammatik"
+  verb: Verb
+  nomen: Substantiv
+  adjektiv: Adjektiv
+  wortart: Wortart
+  level: Level
+  last_visit: Letzter Besuch
+  never: niemals
+  start_training: "Training starten"
+  flash:
+    correct: "Richtig! Das Wort hat ist jetzt auf Stufe %{level}"
   login:
     username: Username
     password: Passwort
+  logout: Ausloggen
+  profile: Profil/Passwort
     
     
 

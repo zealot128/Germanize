@@ -1,0 +1,35 @@
+= form_for @word, :url => path do |f|
+  -if @word.errors.any?
+    #error_explanation
+      %ul
+        - @word.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  - if @word.new_record?
+    =link_to I18n.t('retrieve_data'), retrieve_exercise_words_path, :remote => true, "data-base" =>  retrieve_exercise_words_path(:format => :js), :id => "retriever"
+
+  .field
+    = f.label :translation
+    = f.text_area :translation, :rows => 5
+  .field
+    = f.label :examples
+    = f.text_area :examples, :rows => 5
+  .field
+    = f.label :wordform
+    = f.text_field :wordform
+  .field
+    = f.label :synonyms
+    = f.text_area :synonyms, :rows => 5    
+  .field
+    = f.label :grammar
+    = f.text_area :grammar, :rows => 5
+  .actions
+    = f.submit I18n.t('save')
+
+= l 2.days.from_now
+
+- javascript_tag do
+  retriever(); 

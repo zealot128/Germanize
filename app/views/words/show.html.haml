@@ -1,0 +1,53 @@
+
+%h2{:class => @show[:word].to_s, :id => :word}
+  = @word.name
+
+
+
+
+#translation{:class => @show[:translation].to_s}
+  %h3=t('translations')
+  = simple_format @word.translation
+
+-if @show[:examples]
+  #examples
+    %h3=t('examples')
+    %ul
+      - @word.examples_hidden.split(/[\r\n]+/)[0..5].each do |example|
+        %li=example
+    
+    
+#synonyms{:class => @show[:synonyms].to_s}
+  %h3=t('synonyms')
+  = simple_format @word.synonyms
+    
+#grammar{:class => @show[:grammar].to_s}
+  %h3=t('grammar')
+  = simple_format @word.grammar
+
+
+
+- content_for :sidebar do
+  .box
+    %h2
+      = t('wortart') + ":"
+      = t(@word.wortart)
+    %ul.sidebar
+      %li
+        = link_to I18n.t('edit'), edit_exercise_word_path, :class => :button, :rel => :facebox
+      %li
+        = link_to I18n.t('destroy'), exercise_word_path, :method => :delete, :confirm => I18n.t('are_you_sure'), :class => :button
+    %ul.actions
+      %li
+        %a{ :href=> '#', :class =>'solve button', :accesskey => 'l'} 
+          =t('solve')
+      %li
+        = link_to t(:correct), correct_exercise_word_path(@exercise, @word), :class => "correct button hidden", :method => :post, :accesskey => "r" 
+      %li
+        = link_to t(:wrong),   wrong_exercise_word_path, :class => "wrong button hidden", :method => :post , :accesskey => "f"
+    %p
+      =t('level')+":"
+      = @level.level rescue 0
+    %p
+      =t('last_visit')+":"
+      = l(@level.updated_at, :format => :short) rescue t('never')

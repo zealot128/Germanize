@@ -1,15 +1,9 @@
-%p#notice= notice
+- content_for :title do
+  =I18n.t('exercise')
+  =@exercise.name
 
-%p
-  %b Name:
-  = @exercise.name
 %p
   %b Options:
   = @exercise.options
-%p
-  %b User:
-  = @exercise.user_id
 
-= link_to 'Edit', edit_exercise_path(@exercise)
-\|
-= link_to 'Back', exercises_path
+= link_to I18n.t('edit'), edit_exercise_path(@exercise)

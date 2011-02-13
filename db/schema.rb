@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211203650) do
+ActiveRecord::Schema.define(:version => 20110213160437) do
 
   create_table "exercises", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(:version => 20110211203650) do
     t.datetime "updated_at"
   end
 
+  create_table "levels", :force => true do |t|
+    t.integer  "word_id"
+    t.integer  "exercise_id"
+    t.integer  "level"
+    t.datetime "next_visit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "stats"
+  end
+
+  add_index "levels", ["exercise_id"], :name => "index_levels_on_exercise_id"
+  add_index "levels", ["level"], :name => "index_levels_on_level"
+  add_index "levels", ["next_visit"], :name => "index_levels_on_next_visit"
+  add_index "levels", ["word_id"], :name => "index_levels_on_word_id"
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -27,6 +42,18 @@ ActiveRecord::Schema.define(:version => 20110211203650) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "words", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "translation"
+    t.text     "examples"
+    t.string   "wordform"
+    t.text     "grammar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "synonyms"
   end
 
 end

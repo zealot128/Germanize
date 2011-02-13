@@ -1,0 +1,19 @@
+%h1
+  =I18n.t('listing_words')
+  |
+  =@exercise.name
+
+%ul
+  - @words.each do |word|
+    %li
+      = link_to word.name, exercise_word_path(@exercise,word)
+
+%br
+
+- content_for :sidebar do
+  .box
+    %ul.sidebar
+      %li= link_to I18n.t('new_word'), new_exercise_word_path, :rel => :facebox, :class => :button
+      %li
+        %a.button{:href => exercise_word_path(@exercise,@exercise.find_next_word)}
+          =t('start_training')

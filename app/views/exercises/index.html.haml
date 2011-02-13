@@ -1,23 +1,12 @@
-%h1 Listing exercises
+%h1=I18n.t('listing_exercises')
 
-%table
-  %tr
-    %th Name
-    %th Options
-    %th User
-    %th
-    %th
-    %th
-
+%ul#exercise-list
   - @exercises.each do |exercise|
-    %tr
-      %td= exercise.name
-      %td= exercise.options
-      %td= exercise.user_id
-      %td= link_to 'Show', exercise
-      %td= link_to 'Edit', edit_exercise_path(exercise)
-      %td= link_to 'Destroy', exercise, :confirm => 'Are you sure?', :method => :delete
+    %li
+      %h2= link_to exercise.name, exercise
+      = link_to I18n.t('edit'), edit_exercise_path(exercise), :class => 'button', :rel => 'facebox'
+      = link_to I18n.t('destroy'), exercise, :confirm => I18n.t('are_you_sure'), :method => :delete, :class => 'button'
 
 %br
 
-= link_to 'New Exercise', new_exercise_path
+= link_to I18n.t('new_exercise'), new_exercise_path, :rel => :facebox
