@@ -3,10 +3,12 @@
   |
   =@exercise.name
 
-%ul
-  - @words.each do |word|
-    %li
-      = link_to word.name, exercise_word_path(@exercise,word)
+.levels
+  - (0..7).each do |level|
+    %h3="Level #{level}:"
+    - @exercise.find_all_by_level(level).each do |word|
+      =link_to word.name, exercise_word_path(@exercise,word)
+      |
 
 %br
 

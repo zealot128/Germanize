@@ -1,5 +1,5 @@
 
-%h2{:class => @show[:word].to_s, :id => :word}
+%h2{:class => "#{@show[:word].to_s} #{@word.geschlecht}", :id => :word}
   = @word.name
 
 
@@ -13,7 +13,7 @@
 = text_field_tag :answer
 
 -if @show[:examples]
-  #examples
+  #examples{:class => @word.geschlecht}
     %h3=t('examples')
     %ul
       - @word.examples_hidden.split(/[\r\n]+/)[0..5].each do |example|
@@ -54,3 +54,6 @@
     %p
       =t('last_visit')+":"
       = l(@level.updated_at, :format => :short) rescue t('never')
+    %ul.actions
+      %li=link_to I18n.t('new_word'), new_exercise_word_path, :class => :button, :rel => :facebox
+      %li=link_to I18n.t('exercise_overview'), exercise_words_path, :class => :button

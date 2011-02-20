@@ -134,5 +134,33 @@ a.button:active, button.button:active {
 	display: none;
 }
 .highlight {
-	color: #25771F;
+  font-weight: bold;
+}
+
+.levels a{
+  font-size:140%;
+}
+#left h2.maskulinum {
+  color: darkblue;
+  font-weight: bold;
+  background-color: lightblue;
+}
+.maskulinum .highlight {
+  color: darkblue;
+}
+#left h2.femininum {
+  color: #F53364;
+  font-weight: bold;
+  background-color: #F2D5DC;
+}
+.femininum .highlight {
+  color: #F53364;
+}
+#left h2.neutrum {
+  color: #08A131;
+  font-weight: bold;
+  background-color: #ADEDBE;
+}
+.neutrum .highlight {
+  color:#08A131;
 }

@@ -22,6 +22,7 @@ de:
   item_updated: "%{item} aktualisiert"
   listing_words: "Alle meine Worte"
   new_word: "Neues Wort"
+  exercise_overview: "Übungsübersicht"
   save: "Speichern"
   word: "Wort"
   retrieve_data: "Details besorgen"
