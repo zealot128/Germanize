@@ -9,6 +9,9 @@
   %h3=t('translations')
   = simple_format @word.translation
 
+= label_tag t('answer', :default => "Antwort:")
+= text_field_tag :answer
+
 -if @show[:examples]
   #examples
     %h3=t('examples')
