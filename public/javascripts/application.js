@@ -33,4 +33,23 @@ $(function(){
     $("a.correct").click(function() { return false; });
     $("a.wrong").click(function() { return false; });	
     
+    $('#solve_form').submit(function() {
+      $('.solve').click();
+      return false;
+
+    });
+    if (document.location.pathname.match(/exercises\/\d+\/words\/\d+$/)) {
+      $(document).bind('keypress', 'Alt+Shift+r', function() { 
+          $('.correct').click() } 
+          );  
+      $(document).bind('keypress', 'Alt+Shift+f', function() { 
+          $('.wrong').click() } 
+          );  
+      $(document).bind('keypress', 'Shift+n', function() { 
+          $('#new_word_button').click() } 
+      );  
+
+      $('#answer').focus();
+    }   
+
 })

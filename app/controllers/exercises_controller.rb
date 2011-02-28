@@ -2,11 +2,11 @@ class ExercisesController < ApplicationController
   before_filter :login_required
 
   def index
-    @exercises = Exercise.all
+    @exercises = current_user.exercises
   end
   
   def show
-    redirect_to exercise_words_path Exercise.find(params[:id])
+    redirect_to exercise_words_path current_user.exercises.find(params[:id])
   end
   
   def new
@@ -15,7 +15,7 @@ class ExercisesController < ApplicationController
   end
   
   def edit
-    @exercise = Exercise.find(params[:id])
+    @exercise = current_user.exercises.find(params[:id])
     xhr_no_layout
   end
   
@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
   end
   
   def update
-    @exercise = Exercise.find(params[:id])
+    @exercise = current_user.exercises.find(params[:id])
     @exercise.user = current_user
     
     if @exercise.update_attributes(params[:exercise])
@@ -42,7 +42,7 @@ class ExercisesController < ApplicationController
   end
   
   def destroy
-    @exercise = Exercise.find(params[:id])
+    @exercise = current_user.exercises.find(params[:id])
     @exercise.destroy
     
     redirect_to(exercises_url)

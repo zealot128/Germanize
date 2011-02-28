@@ -9,8 +9,9 @@
   %h3=t('translations')
   = simple_format @word.translation
 
-= label_tag t('answer', :default => "Antwort:")
-= text_field_tag :answer
+= form_tag({},:id => :solve_form) do 
+  = label_tag t('answer', :default => "Antwort:")
+  = text_field_tag :answer
 
 -if @show[:examples]
   #examples{:class => @word.geschlecht}
@@ -45,9 +46,16 @@
         %a{ :href=> '#', :class =>'solve button', :accesskey => 'l'} 
           =t('solve')
       %li
-        = link_to t(:correct), correct_exercise_word_path(@exercise, @word), :class => "correct button hidden", :method => :post, :accesskey => "r" 
+        = link_to correct_exercise_word_path(@exercise, @word), :class => "correct button hidden", :method => :post, :accesskey => "r" do
+          =t(:correct)
+
+          (A-S-r)
+        
       %li
-        = link_to t(:wrong),   wrong_exercise_word_path, :class => "wrong button hidden", :method => :post , :accesskey => "f"
+        = link_to wrong_exercise_word_path, :class => "wrong button hidden", :method => :post , :accesskey => "f" do
+          =t(:wrong)
+
+          (A-S-f)
     %p
       =t('level')+":"
       = @level.level rescue 0
@@ -55,5 +63,8 @@
       =t('last_visit')+":"
       = l(@level.updated_at, :format => :short) rescue t('never')
     %ul.actions
-      %li=link_to I18n.t('new_word'), new_exercise_word_path, :class => :button, :rel => :facebox
+      %li
+        =link_to new_exercise_word_path, :class => :button, :rel => :facebox, :id => 'new_word_button' do
+          =t('new_word')
+          (A-S-v)
       %li=link_to I18n.t('exercise_overview'), exercise_words_path, :class => :button

@@ -44,6 +44,7 @@ de:
   start_training: "Training starten"
   flash:
     correct: "Richtig! Das Wort hat ist jetzt auf Stufe %{level}"
+    wrong: "Leider falsche! Wort ist auf Stufe %{level} zurückgefallen"
   login:
     username: Username
     password: Passwort
