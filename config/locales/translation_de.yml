@@ -1,9 +1,13 @@
 de:
+  wordform_explanation: "Nomen: N, Adjektiv: A, Verb V"
+  grammar_explanation: "Zeilenweise Informationen. Bei Nomen bitte eine Zeile wie 'Geschlecht: männlich' zur Farbkodierung"
+  examples_explanation: "Zeilenweise Beispiele, Wort muss genauso lauten wie oben angegeben"
   
   activerecord:
     models:
       user: Nutzer
       exercise: "Übung"  #g
+      word: Wort
 
     attributes:
       user:
@@ -17,3 +21,10 @@ de:
       exercise:
         name: Name  #g
         options: Optionen  #g
+      word:
+        name: Name
+        translation: Übersetzung
+        examples: Beispiele
+        wordform: Wordart/Wortform
+        synonyms: Synonyme/ähnliche Worte
+        grammar: Grammatikinformationen

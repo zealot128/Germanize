@@ -23,6 +23,6 @@ class Word < ActiveRecord::Base
   end
   
   def examples_hidden
-    examples.gsub(name,"______")
+    examples.gsub(name,"______").gsub(name.capitalize,"______")
   end
 end

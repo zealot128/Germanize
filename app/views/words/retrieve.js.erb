@@ -9,7 +9,9 @@ synonyms = <%=raw @information.delete(:synonyms).to_json %>;
 $('#word_synonyms').val(synonyms);
 
 word_forms = <%=raw @information.delete(:class).to_json %>;
-$('#word_wordform').val(word_forms);
+if (word_forms) {
+  $('#word_wordform').val(word_forms);
+}
 
 grammar = <%= raw @information[:grammar].map{|i,j| i + ": " + j.gsub("\n"," - ") }.join("\n").to_json %>;
 $('#word_grammar').val(grammar);

@@ -23,13 +23,8 @@ class WordProvider
   def initialize(word)
     @@api ||= WLAPI::API.new
     baseform, wordclass = @@api.baseform(word)
+    self.word = word
 
-    if baseform
-      self.word = baseform
-      self.word_class = wordclass
-    else
-      self.word = word
-    end
   end
 
   def post(url, params)

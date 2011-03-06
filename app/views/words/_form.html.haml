@@ -8,28 +8,31 @@
     = f.label :name
     = f.text_field :name
 
-  - if @word.new_record?
-    =link_to I18n.t('retrieve_data'), retrieve_exercise_words_path, :remote => true, "data-base" =>  retrieve_exercise_words_path(:format => :js), :id => "retriever"
+  =link_to I18n.t('retrieve_data'), retrieve_exercise_words_path, :remote => true, "data-base" =>  retrieve_exercise_words_path(:format => :js), :id => "retriever"
 
   .field
     = f.label :translation
-    = f.text_area :translation, :rows => 5
+    = f.text_area :translation, :rows => 4
   .field
     = f.label :examples
-    = f.text_area :examples, :rows => 5
+    = f.text_area :examples, :rows => 4
+    %p.comment=t('examples_explanation')
   .field
+
     = f.label :wordform
-    = f.text_field :wordform
+    = f.select :wordform, [ [ "Nomen","N"],[ "Verb", "V" ], [ "Adjektiv","A" ], [ "Sonstige","S" ]]
+    =# f.text_field :wordform
+    %p.comment=t('wordform_explanation')
   .field
     = f.label :synonyms
-    = f.text_area :synonyms, :rows => 5    
+    = f.text_area :synonyms, :rows => 1
   .field
     = f.label :grammar
-    = f.text_area :grammar, :rows => 5
+    = f.text_area :grammar, :rows => 2
+    %p.comment=t('grammar_explanation')
   .actions
     = f.submit I18n.t('save')
 
-= l 2.days.from_now
 
 - javascript_tag do
   retriever(); 

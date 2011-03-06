@@ -22,22 +22,41 @@ $(function(){
 
     $('a[rel*=facebox]').facebox();
     $('.solve').click(function(){
-        $('.false').fadeIn('slow');
-        $("a.correct").unbind("click");
-        $("a.wrong").unbind("click");
-		word = "<span class='highlight'>" + trim($('#word').text()) + "</span>";
-		html = $('#examples').html().replace(/___+/g,word);
-		$('#examples').html(html);
-        return false;
+      $('#answer').hide();
+
+      $('.false').fadeIn('slow');
+      $("a.correct").unbind("click");
+      $("a.wrong").unbind("click");
+      $('.solve').unbind("click");
+      word = "<span class='highlight'>" + trim($('#word').text()) + "</span>";
+      html = $('#examples').html().replace(/___+/g,word);
+      $('#examples').html(html);
+      
+      var answer = $('#answer').val();
+      var word   = trim($('#word').text());
+      if (answer.toLowerCase() == word.toLowerCase()) {
+        $('#answer-notice').addClass("correct-notice")
+        $('.solve').click(function() {
+          $('a.correct').click();
+        });
+      } else {
+        $('#answer-notice').addClass("wrong-notice")
+        $('.solve').click(function() {
+          $('a.wrong').click();
+        });
+      }
+      $('#answer').fadeIn('slow');
+      return false;
     })
+
     $("a.correct").click(function() { return false; });
     $("a.wrong").click(function() { return false; });	
-    
+
     $('#solve_form').submit(function() {
       $('.solve').click();
       return false;
 
-    });
+      });
     if (document.location.pathname.match(/exercises\/\d+\/words\/\d+$/)) {
       $(document).bind('keypress', 'Alt+Shift+r', function() { 
           $('.correct').click() } 
@@ -47,7 +66,7 @@ $(function(){
           );  
       $(document).bind('keypress', 'Shift+n', function() { 
           $('#new_word_button').click() } 
-      );  
+          );  
 
       $('#answer').focus();
     }   

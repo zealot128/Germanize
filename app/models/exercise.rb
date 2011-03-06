@@ -6,22 +6,20 @@ class Exercise < ActiveRecord::Base
 
   def find_next_word
     current_usr = self.user
+    exercise = self
 
-    word = Word.joins("left join levels on levels.word_id = words.id").
-      where("levels.word_id is null").where(:user_id => self.user_id).order("created_at asc")
+    word = Word.joins("left join levels on levels.word_id = words.id").where("levels.word_id is null").where(:user_id => current_usr).order("created_at asc")
     if word.empty?
       word = Word.joins(:levels).
-        where("exercise_id != ?",self).
+        where("exercise_id != ?",exercise).
         where("(select id from levels l where l.exercise_id = ? and l.word_id = words.id) is null",self).
-        where(:user_id => self.user_id).
+        where(:user_id => current_usr).
         order("created_at desc").
         limit(1)
     end
       
     if word.empty?
-      word = Word.where("user_id = ? ", current_usr).
-        joins(:levels).
-        where(:levels => {:exercise_id => self}).
+      word = Word.where("user_id = ? ", current_usr).joins(:levels).where(:levels => {:exercise_id => exercise}).
         order("levels.next_visit asc").
         limit(1)
     end
