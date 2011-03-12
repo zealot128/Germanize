@@ -63,6 +63,9 @@
     %p
       =t('last_visit')+":"
       = l(@level.updated_at, :format => :short) rescue t('never')
+    %p
+      =t('due_words') + ":"
+      = @exercise.count_due rescue 0
     %ul.actions
       %li
         =link_to new_exercise_word_path, :class => :button, :rel => :facebox, :id => 'new_word_button' do

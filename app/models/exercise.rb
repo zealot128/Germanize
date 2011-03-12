@@ -26,6 +26,15 @@ class Exercise < ActiveRecord::Base
     word.first
   end
 
+  def count_due
+    current_usr = self.user
+    exercise = self
+    sql = Word.where("user_id = ? ", current_usr).joins(:levels)
+    sql = sql.where(:levels => {:exercise_id => exercise})
+    sql = sql.where(["levels.next_visit <= ?",Time.now])
+    sql.count
+  end
+
   def level(word)
     Level.find_by_word_id_and_exercise_id(word, self)
   end

@@ -5,8 +5,9 @@
 
 .levels
   - (0..7).each do |level|
-    %h3="Level #{level}:"
-    - @exercise.find_all_by_level(level).each do |word|
+    - words = @exercise.find_all_by_level(level)
+    %h3="Level #{level} (#{words.count}):"
+    - words.each do |word|
       =link_to word.name, exercise_word_path(@exercise,word)
       |
 
@@ -18,3 +19,6 @@
       %li= link_to I18n.t('new_word'), new_exercise_word_path, :rel => :facebox, :class => :button
       %li
         = link_to t('start_training'), exercise_word_path(@exercise,@exercise.find_next_word) rescue t('start_training')
+    %p
+      =t('due_words') + ":"
+      = @exercise.count_due rescue 0
