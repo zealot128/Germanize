@@ -26,11 +26,11 @@ class User < ActiveRecord::Base
   end
 
   def rubys
-    score / 50
+    score / 50 rescue 0
   end
 
   def progress
-    (score % 50 * 2).to_s + "%"
+    (score % 50 * 2).to_s + "%"  rescue "0%"
   end
 
   private
