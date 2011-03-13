@@ -29,8 +29,13 @@ class User < ActiveRecord::Base
     score / 50 rescue 0
   end
 
-  def progress
-    (score % 50 * 2).to_s + "%"  rescue "0%"
+  def progress(exercise)
+    gesamt = words.count
+    due = gesamt - exercise.count_due
+    percent = due  * 100 / gesamt
+    "#{percent}%"
+  rescue
+    "0%"
   end
 
   private
