@@ -65,12 +65,14 @@ class WordsController < ApplicationController
   end
   
   def correct
+    User.increment_counter :score, current_user
     answer('flash.correct') do
       correct
     end
   end
   
   def wrong
+    User.decrement_counter :score, current_user
     answer('flash.wrong') do
       wrong
     end

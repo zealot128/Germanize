@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
     self.password_hash == encrypt_password(pass)
   end
 
+  def rubys
+    score / 50
+  end
+
+  def progress
+    (score % 50 * 2).to_s + "%"
+  end
+
   private
 
   def prepare_password

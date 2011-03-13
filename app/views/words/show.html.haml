@@ -44,19 +44,13 @@
         = link_to I18n.t('destroy'), exercise_word_path, :method => :delete, :confirm => I18n.t('are_you_sure'), :class => :button
     %ul.actions
       %li
-        %a{ :href=> '#', :class =>'solve button', :accesskey => 'l'} 
-          =t('solve')
+        %a{ :href=> '#', :class =>'solve button'}=t('solve')
       %li
-        = link_to correct_exercise_word_path(@exercise, @word), :class => "correct button hidden", :method => :post, :accesskey => "r" do
+        = link_to correct_exercise_word_path(@exercise, @word), :class => "correct button hidden", :method => :post do
           =t(:correct)
-
-          (A-S-r)
-        
       %li
-        = link_to wrong_exercise_word_path, :class => "wrong button hidden", :method => :post , :accesskey => "f" do
+        = link_to wrong_exercise_word_path, :class => "wrong button hidden", :method => :post do
           =t(:wrong)
-
-          (A-S-f)
     %p
       =t('level')+":"
       = @level.level rescue 0
@@ -66,6 +60,7 @@
     %p
       =t('due_words') + ":"
       = @exercise.count_due rescue 0
+    =render :partial => "layouts/reward"
     %ul.actions
       %li
         =link_to new_exercise_word_path, :class => :button, :rel => :facebox, :id => 'new_word_button' do

@@ -57,6 +57,8 @@ $(function(){
       return false;
 
       });
+    $(".progressBar").progressBar({ showText: false, barImage: '/images/progressbg_red.gif'});
+    /*
     if (document.location.pathname.match(/exercises\/\d+\/words\/\d+$/)) {
       $(document).bind('keypress', 'Alt+Shift+r', function() { 
           $('.correct').click() } 
@@ -68,7 +70,8 @@ $(function(){
           $('#new_word_button').click() } 
           );  
 
-      $('#answer').focus();
     }   
+    */
+      $('#answer').focus();
 
 })
