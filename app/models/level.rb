@@ -19,10 +19,10 @@ class Level < ActiveRecord::Base
 
   def self.level_time(level)
     time = case level
-      when 0 then lambda {2.minutes}
-      when 1 then lambda {5.minutes }
-      when 2 then lambda {20.minutes }
-      when 3 then lambda {1.hour }
+      when 0 then lambda {5.minutes}
+      when 1 then lambda {20.minutes }
+      when 2 then lambda {1.hour }
+      when 3 then lambda {12.hours }
       when 4 then lambda {1.day}
       when 5 then lambda {5.days}
       when 6 then lambda {15.days}
