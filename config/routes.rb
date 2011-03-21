@@ -11,6 +11,9 @@ Germanize::Application.routes.draw do
   resources :users
   
   resources :exercises do
+    member do
+      get "level"
+    end
     resources :words do
       collection do
         get :retrieve
@@ -18,6 +21,7 @@ Germanize::Application.routes.draw do
       member do
         post "correct"
         post "wrong"   
+        get "popup"
       end
     end
   end

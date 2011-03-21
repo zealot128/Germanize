@@ -3,11 +3,11 @@
   %head
     %meta{ "http-equiv"=>"Content-Type", :content => "application/html; charset=utf-8" }
     %title Germanize
-    = stylesheet_link_tag :all
-    = stylesheet_link_tag "/facebox/facebox.css"
-    = javascript_include_tag :defaults
-    = javascript_include_tag "/facebox/facebox.js"
-    = javascript_include_tag "jquery.progressbar.min", "qtip"
+    = stylesheet_link_tag :all, :cache => "styling"
+    = stylesheet_link_tag "/facebox/facebox.css", :cache => true
+    
+    = javascript_include_tag :defaults,   "jquery.progressbar.min", "qtip", :cache => "jscript"
+    = javascript_include_tag "/facebox/facebox.js", :cache => true
 
     = csrf_meta_tag
     = yield(:head)
@@ -26,7 +26,7 @@
           %li=link_to t('profile'), edit_user_path(current_user)
         
 
-    .clear
+      .clear
     .wrap
       #left
         %h2=yield(:title)
@@ -36,7 +36,6 @@
         = yield
       #right
         .box
-          Sidebar
         =yield(:sidebar)
       #footer
         %p

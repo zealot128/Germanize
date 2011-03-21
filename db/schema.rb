@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313085723) do
+ActiveRecord::Schema.define(:version => 20110317123727) do
 
   create_table "exercises", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20110313085723) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "exercises", ["user_id"], :name => "index_exercises_on_user_id"
 
   create_table "levels", :force => true do |t|
     t.integer  "word_id"
@@ -56,5 +58,8 @@ ActiveRecord::Schema.define(:version => 20110313085723) do
     t.datetime "updated_at"
     t.text     "synonyms"
   end
+
+  add_index "words", ["created_at"], :name => "index_words_on_created_at"
+  add_index "words", ["user_id"], :name => "index_words_on_user_id"
 
 end

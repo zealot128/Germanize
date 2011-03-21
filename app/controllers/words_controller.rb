@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_filter :provide_exercise, :login_required
+  #caches_page :new
   
   def index
     @words = current_user.words.all
@@ -31,7 +32,12 @@ class WordsController < ApplicationController
     @word = Word.new(params[:word])
     @word.user = current_user
     if @word.save
-      redirect_to(exercise_words_path(@exercise), :notice => t('item_created', :item => t('word')))
+      notice =  t('item_created', :item => t('word'))
+      if params[:to_new]
+        render :action => "new", :notice => notice
+      else
+        redirect_to(exercise_words_path(@exercise), :notice => notice)
+      end
     else
       render :action => "new" 
     end
@@ -61,7 +67,6 @@ class WordsController < ApplicationController
     @provider = WordProvider.new(params[:word])
     @information = @provider.to_hash
     logger.debug @information.inspect
-    
   end
   
   def correct
@@ -77,6 +82,12 @@ class WordsController < ApplicationController
       wrong
     end
   end  
+
+
+  def popup
+    @word = Word.find(params[:id])
+    render :layout => false
+  end
   
   private
   

@@ -48,5 +48,11 @@ class ExercisesController < ApplicationController
     redirect_to(exercises_url)
   end
   
+  def level
+    @exercise = Exercise.find(params[:id])
+    @words = @exercise.find_all_by_level(params[:level])
+    render :layout => false
+
+  end
 
 end

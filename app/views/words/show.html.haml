@@ -60,6 +60,8 @@
     %p
       =t('due_words') + ":"
       = @exercise.count_due rescue 0
+      = "/"
+      = current_user.words.count
     =render :partial => "layouts/reward"
     %ul.actions
       %li

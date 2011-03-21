@@ -22,7 +22,7 @@ module WordsHelper
       :flower => "blume.gif",
       :jade   => "jade.jpg",
       :ruby   => "ruby-resized.png",
-      :auto   => "auto.jpg,",
+      :auto   => "auto.jpg",
       :haus   => "haus.jpg"
     }
     out = ""

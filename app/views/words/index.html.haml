@@ -5,11 +5,21 @@
 
 .levels
   - (0..7).each do |level|
-    - words = @exercise.find_all_by_level(level)
-    %h3="Level #{level} (#{words.count}):"
-    - words.each do |word|
-      =link_to word.name, exercise_word_path(@exercise,word)
-      |
+    - toggle =  level > 0
+    %h3
+      =link_to "Level #{level}", "#", :class => "open_container", "data-level" => level
+
+      %span.count
+
+    
+    - if toggle
+      .container{"id" => "container-#{level}", "data-toggled" => toggle}
+    - else
+      .container{"id" => "container-#{level}", "data-toggled" => toggle}
+        - words = @exercise.find_all_by_level(level)
+        - words.each do |word|
+          =link_to word.name, exercise_word_path(@exercise,word), "data-id" => word.id, :class => "hover-popup"
+          |
 
 %br
 

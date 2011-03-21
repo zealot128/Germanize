@@ -32,7 +32,9 @@
     %p.comment=t('grammar_explanation')
   .actions
     = f.submit I18n.t('save')
+    =# f.submit I18n.t('save_and_new'), :name => "to_new"
 
 
 - javascript_tag do
   retriever(); 
+  $('#word_name').focus();

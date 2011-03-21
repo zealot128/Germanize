@@ -1,6 +1,16 @@
+var init = true;
 function retriever(){
+  $('#new_word,.edit_word').submit(function() {
+      if (init ) {
+        $('#retriever').click();
+        init = false;
+        return false;
+      } else {
+        return true;
+      }
+  });
+
     $('#word_name').each(function(){
-    
         $(this).data('oldVal', $(this));
         $(this).bind("propertychange keyup input paste", function(event){
             if ($(this).data('oldVal') != $(this).val()) {
@@ -13,6 +23,71 @@ function retriever(){
     })
     
 }
+
+function updateLevelCount() {
+  $('.levels h3').each(function() { 
+      level=$(this).find("a").attr("data-level"); 
+      count= $("#container-"+level+" a").size(); 
+      if (count>0) {
+        html = "(" + count + ")"
+        $(this).find(".count").html(html);
+      }
+  });
+}
+
+function qtipInit() {
+  $('.hover-popup').qtip({
+      content: 'Translating...', 
+      style: {
+        tip: true, // Create speech bubble tip at the set tooltip corner above
+        name: 'cream'
+      },
+      api: {
+        onRender: function() {
+          var me = this;
+          var target = $(me.elements.target);
+          id = target.attr("data-id");
+          link = window.location.pathname + "/" + id + "/popup";
+          $.get(link, function(data) {
+              me.updateContent(data);
+              
+          });
+        }
+      }
+  });
+}
+/*
+function ajaxifyLoginForm(){
+    $('#facebox form').submit(function(){
+        $("form").append("<img src='/facebox/loading.gif' id='loading-img'/>")
+        var me = $(this); // need access to this in our callbacks
+        
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'html',
+            success: function(data){
+              window.location.reload();
+            },
+            error: function(xhr){
+                if (xhr.status == '406') {
+                    $('#errorExplanation').remove();
+                    $('#loading-img').remove();
+                              me.before('<div id="errorExplanation" class="errorExplanation">\
+                      <h2>Fehler!</h2>\
+                      <p>' + xhr.responseText + '</p>\
+                      </div>');
+                }
+            }
+        });
+        return false;
+    });
+}
+*/
+
+
+
 
 function trim(s){ 
   return ( s || '' ).replace( /^\s+|\s+$/g, '' ); 
@@ -58,7 +133,34 @@ $(function(){
 
       });
     $(".progressBar").progressBar({ showText: false, barImage: '/images/progressbg_red.gif'});
-    /*
+
+    if (document.location.pathname.match(/exercises\/\d+\/words$/)) {
+      qtipInit();
+      updateLevelCount();
+      $('.open_container').click(function() {
+          level = $(this).attr("data-level");
+          container = $('#container-' + level)
+          if (container.html().length == 0) {
+            // fetch
+            link = window.location.pathname.replace("words","level") + "?level=" + level;
+            container.hide();
+            $.get(link, function(data) {
+              container.html(data);
+              qtipInit();
+              container.slideDown(function() {
+                updateLevelCount();
+              });
+            });
+          } else {
+            container.slideToggle(function() {
+              updateLevelCount();
+            });
+          }
+          return false;
+      });
+
+    }
+/*
     if (document.location.pathname.match(/exercises\/\d+\/words\/\d+$/)) {
       $(document).bind('keypress', 'Alt+Shift+r', function() { 
           $('.correct').click() } 
@@ -73,5 +175,6 @@ $(function(){
     }   
     */
       $('#answer').focus();
+
 
 })

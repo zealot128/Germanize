@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'yaml_db'
+gem 'smurf'
 
 gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
@@ -9,6 +11,7 @@ gem 'nokogiri'
 gem "haml-rails", ">= 0.3.4"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "wlapi"
+gem "wirble"
 
 #gem "capybara", ">= 0.4.0", :group => [:cucumber, :test]
 #gem "cucumber-rails", ">= 0.3.2", :group => [:cucumber, :test]

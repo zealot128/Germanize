@@ -1,0 +1,4 @@
+<% @words.each do |word| %>
+  <%=link_to word.name, exercise_word_path(@exercise,word), "data-id" => word.id, :class => "hover-popup" %>
+|
+<% end %>

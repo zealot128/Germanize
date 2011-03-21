@@ -14,7 +14,7 @@ module Germanize
 
     config.i18n.default_locale = :de
 
-    config.action_view.javascript_expansions[:defaults] = %w(jquery.js jquery-ui.js rails.js)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery.js rails.js)
 
     config.encoding = "utf-8"
 

@@ -39,13 +39,23 @@ class Exercise < ActiveRecord::Base
     Level.find_by_word_id_and_exercise_id(word, self)
   end
   
-  def find_all_by_level(level)
-    bla = words.joins(:levels).where(:levels =>{ :level => level}).group("words.id").order(:name).all
+
+
+  def find_all_by_level(level,count = false)
+    bla = words.joins(:levels).where(:levels =>{ :level => level})
+
     if level==0
-      empty = Word.where('id not in (?)', words).where(:user_id => self.user_id).all
-      empty + bla
+      empty = Word.where('id not in (?)', words).where(:user_id => self.user_id)
+    end
+    
+    if count
+      count =  bla.count
+      count += empty.count if level == 0
+      count
     else
-      bla
-    end.sort{|a,b| a.name.downcase <=> b.name.downcase }
+      obj = bla.all
+      obj = obj + empty.all if level == 0
+      obj.sort{|a,b| a.name.downcase <=> b.name.downcase }
+    end
   end  
 end
