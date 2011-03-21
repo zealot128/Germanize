@@ -13,21 +13,6 @@
     = yield(:head)
   %body#home
     .wrap
-      #logo
-        %h1
-          %a{:href => "/", :title => "Home"} 
-            =yield(:title)
-            Germanize
-        %p Making learning German much easier!
-      %ul#nav
-        %li=link_to_with_highlight t("activerecord.models.exercise"), exercises_path
-        - if logged_in?
-          %li=link_to t('logout'), logout_path
-          %li=link_to t('profile'), edit_user_path(current_user)
-        
-
-      .clear
-    .wrap
       #left
         %h2=yield(:title)
         - flash.each do |bla,blubb|
@@ -37,12 +22,27 @@
       #right
         .box
         =yield(:sidebar)
-      #footer
-        %p
-          %strong=t('Author')
-          %a{:href => "http://www.stefanwienert.net/"} Stefan Wienert
-        %p
-          =t("Design") 
-          %a{:href => "http://www.solucija.com/", :title => "Awsome Web Templates"} Solucija
-
-        = yield(:footer)
+    .clear
+    #foot.wrap
+      #footinside
+        #logo
+          %h1
+            %a{:href => "/", :title => "Home"} 
+              =yield(:title)
+              Germanize
+          %p Making learning German much easier!
+        %ul#nav
+          %li=link_to_with_highlight t("activerecord.models.exercise"), exercises_path
+          - if logged_in?
+            %li=link_to t('logout'), logout_path
+            %li=link_to t('profile'), edit_user_path(current_user)
+        .clear
+        #footer
+          %p.left
+            %strong=t('Author')
+            %a{:href => "http://www.stefanwienert.net/"} Stefan Wienert
+          %p.right
+            =t("Design") 
+            %a{:href => "http://www.solucija.com/", :title => "Awsome Web Templates"} Solucija
+          = yield(:footer)
+      .clear
