@@ -3,7 +3,7 @@ class Level < ActiveRecord::Base
   belongs_to :exercise
   
   def correct
-    self.level = [self.level+1,6].min
+    self.level = [self.level+1,8].min
     set_time
   end
   
@@ -26,6 +26,8 @@ class Level < ActiveRecord::Base
       when 4 then lambda {1.day}
       when 5 then lambda {5.days}
       when 6 then lambda {15.days}
+      when 7 then lambda {30.days}
+      when 8 then lambda {6.months}
     else raise "Error"
     end
     time.call.from_now

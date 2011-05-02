@@ -5,6 +5,7 @@ require "nokogiri"
 require "open-uri"
 require "active_support/core_ext/array/grouping"
 require 'iconv' #this line is not needed in rails !
+require "google_translate"
 
 class String
   def to_iso
@@ -77,8 +78,15 @@ class WordProvider
       doc = Nokogiri.parse(open(link))
       self.translations = doc.search("#results tr[valign=top]").map{|i| i.search("td")[1].inner_text} rescue []
     end
+    get_google_translations
     self.translations
-    
+  end
+
+
+  def get_google_translations
+    trans = Google::Translator.new
+    self.translations ||= []
+    self.translations.unshift trans.translate(:de,:zh, self.word) rescue ""
   end
 
   def to_hash

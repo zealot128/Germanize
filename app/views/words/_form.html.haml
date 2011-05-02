@@ -8,7 +8,8 @@
     = f.label :name
     = f.text_field :name
 
-  =link_to I18n.t('retrieve_data'), retrieve_exercise_words_path, :remote => true, "data-base" =>  retrieve_exercise_words_path(:format => :js), :id => "retriever", "data-type" => "script"
+  =link_to I18n.t('retrieve_data'), retrieve_exercise_words_path, :remote => true, "data-base" =>  retrieve_exercise_words_path(:format => :js), :id => "retriever", "data-type" => "script", :class => :button
+  #spinner
 
   .field
     = f.label :translation

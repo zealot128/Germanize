@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create]
+  before_filter :login_required, :except => [:new, :create, :feed]
 
   def new
     @user = User.new
@@ -28,5 +28,11 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+
+
+  def feed
+    @user = User.find(params[:id])
+    @words = @user.words.order("updated_at desc").limit(100)
   end
 end

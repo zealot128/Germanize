@@ -5,6 +5,7 @@ Germanize::Application.routes.draw do
   match 'signup' => 'users#new', :as => :signup
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
+  match 'users/feed/:id' => 'users#feed'
   
   resources :sessions
   

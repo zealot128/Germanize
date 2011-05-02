@@ -4,7 +4,7 @@
   =@exercise.name
 
 .levels
-  - (0..7).each do |level|
+  - (0..8).each do |level|
     - toggle =  level > 0
     %h3
       =link_to "Level #{level}", "#", :class => "open_container", "data-level" => level

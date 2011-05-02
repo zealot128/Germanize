@@ -1,5 +1,5 @@
-var init = true;
 function retriever(){
+  /*
   $('#new_word,.edit_word').submit(function() {
       if (init ) {
         $('#retriever').click();
@@ -9,6 +9,7 @@ function retriever(){
         return true;
       }
   });
+  */
 
     $('#word_name').each(function(){
         $(this).data('oldVal', $(this));
@@ -21,6 +22,11 @@ function retriever(){
             }
         });
     })
+
+    $('#retriever').click(function() {
+        $('#spinner').html("<img src='/images/spinner.gif'/>").show();
+    });
+
     
 }
 
