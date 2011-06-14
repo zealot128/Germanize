@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.7'
+gem "mysql2", "~> 0.2.7"
+
 gem 'yaml_db'
 gem 'smurf'
+gem "haml"
 
 gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
